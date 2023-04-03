@@ -83,7 +83,7 @@ function game() {
     
     // This loops through the playRound() function 5 times
     for (let i = 0; i < 5; i++) {
-        function playRound(userChoice, computerChoice)
+        function playRound(userChoice, getComputerChoice())
     }
 
     // if the user won at least 3 out of 5 rounds they won, if not they lost

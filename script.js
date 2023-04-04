@@ -6,26 +6,6 @@ The user will be prompted for an input (rock, paper or scissors). The computer w
 A function will take in both the users choice and the computers choice to determine the winner of that round. The game will include 5 rounds. 
 The results will be returned with the winner declared. */
 
-function getComputerChoice() {
-  // generates a random number between 1 and 3 and stores in randomNum
-  let randomNum = Math.floor(Math.random() * 3 + 1);
-
-  // This stores the computers choice
-  let computerChoice = "";
-
-  // This logic assigns random numbers 1 - 3 to scissor, paper, and rock values
-  if (randomNum === 1) {
-    computerChoice = "Scissors";
-  } else if (randomNum === 2) {
-    computerChoice = "Paper";
-  } else if (randomNum === 3) {
-    computerChoice = "Rock";
-  } else {
-    return "Error with getComputerChoice()";
-  }
-  return computerChoice;
-}
-
 function game() {
   // This stores the users input and converts it all to lower case
   let userInput = prompt("Enter Rock, Paper or Scissors").toLowerCase();
@@ -34,27 +14,49 @@ function game() {
 
   // This stores the users score and increments by 1 if user wins round
   let userScore = 0;
+  // This stores the computers score and increments by 1 if computer wins round
+  let computerScore = 0;
+  function getComputerChoice() {
+    // generates a random number between 1 and 3 and stores in randomNum
+    let randomNum = Math.floor(Math.random() * 3 + 1);
+
+    // This stores the computers choice
+    let computerChoice = "";
+
+    // This logic assigns random numbers 1 - 3 to scissor, paper, and rock values
+    if (randomNum === 1) {
+      computerChoice = "Scissors";
+    } else if (randomNum === 2) {
+      computerChoice = "Paper";
+    } else if (randomNum === 3) {
+      computerChoice = "Rock";
+    } else {
+      return "Error with getComputerChoice()";
+    }
+    return computerChoice;
+  }
 
   function playRound(userSelection, computerSelection) {
     // Winning conditions for the user
     if (userSelection === "Scissors" && computerSelection === "Paper") {
       userScore++;
-      return "You win! Scissors beats Paper";
+      console.log("You win! Scissors beats Paper");
     } else if (userSelection === "Paper" && computerSelection === "Rock") {
       userScore++;
-      return "You win! Paper beats Rock";
+      console.log("You win! Paper beats Rock");
     } else if (userSelection === "Rock" && computerSelection === "Scissors") {
       userScore++;
-      return "You win! Rock beats Scissors";
+      console.log("You win! Rock beats Scissors");
     }
     // Tie scenario
     else if (userSelection === computerSelection) {
-      return "Tie!";
+      console.log("Tie!");
     }
 
     // If the above conditions aren't true then the user loses
     else {
-      return "You lose!";
+      computerScore++;
+      console.log("You lose!");
     }
   }
 
@@ -63,10 +65,21 @@ function game() {
     playRound(userChoice, getComputerChoice());
   }
 
-  // if the user won at least 3 out of 5 rounds they won, if not they lost
-  if (userScore >= 3) {
-    return "Victory!";
+  console.log("Your score: " + userScore);
+  console.log("Computers score: " + computerScore);
+
+  // if the userScore is greater than the computerScore than you win
+  if (userScore > computerScore) {
+    console.log("VICTORY!");
+  } else if (userScore === computerScore) {
+    console.log("DRAW!");
   } else {
-    return "Defeat!";
+    console.log("DEFEAT!");
   }
 }
+
+game();
+
+// the user needs to be able to put in 5 inputs
+
+// currently the user puts in 1 input but the computer has 5 inputs

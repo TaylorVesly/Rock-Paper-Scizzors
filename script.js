@@ -6,11 +6,6 @@ The user will be prompted for an input (rock, paper or scissors). The computer w
 A function will take in both the users choice and the computers choice to determine the winner of that round. The game will include 5 rounds. 
 The results will be returned with the winner declared. */
 
-// This stores the users input and converts it all to lower case
-let userInput = prompt("Enter Rock, Paper or Scissors").toLowerCase();
-// This capitalizes the first letter of the users input
-let userChoice = userInput.charAt(0).toUpperCase() + userInput.slice(1);
-
 function getComputerChoice() {
   // generates a random number between 1 and 3 and stores in randomNum
   let randomNum = Math.floor(Math.random() * 3 + 1);
@@ -26,57 +21,52 @@ function getComputerChoice() {
   } else if (randomNum === 3) {
     computerChoice = "Rock";
   } else {
-    return "Error with getComputerChoice function";
+    return "Error with getComputerChoice()";
   }
   return computerChoice;
 }
 
-// This keeps score of each round the user and computer win. score increments by 1 if round is won
-let userScore = 0;
-let computerScore = 0;
-
-function playRound(userSelection, computerSelection) {
-  // Winning conditions for the user
-  if (userSelection === "Scissors" && computerSelection === "Paper") {
-    userScore++;
-    return "You win! Scissors beats Paper";
-  } else if (userSelection === "Paper" && computerSelection === "Rock") {
-    userScore++;
-    return "You win! Paper beats Rock";
-  } else if (userSelection === "Rock" && computerSelection === "Scissors") {
-    userScore++;
-    return "You win! Rock beats Scissors";
-  }
-  // Tie scenario
-  else if (userSelection === computerSelection) {
-    return "Tie!";
-  }
-
-  // If the above conditions aren't true then the user loses
-  else {
-    computerScore++;
-    return "You lose!";
-  }
-}
-
-
-/*
 function game() {
-    
-    // This loops through the playRound() function 5 times
-    for (let i = 0; i < 5; i++) {
-        function playRound(userChoice, getComputerChoice());
+  // This stores the users input and converts it all to lower case
+  let userInput = prompt("Enter Rock, Paper or Scissors").toLowerCase();
+  // This capitalizes the first letter of the users input
+  let userChoice = userInput.charAt(0).toUpperCase() + userInput.slice(1);
+
+  // This stores the users score and increments by 1 if user wins round
+  let userScore = 0;
+
+  function playRound(userSelection, computerSelection) {
+    // Winning conditions for the user
+    if (userSelection === "Scissors" && computerSelection === "Paper") {
+      userScore++;
+      return "You win! Scissors beats Paper";
+    } else if (userSelection === "Paper" && computerSelection === "Rock") {
+      userScore++;
+      return "You win! Paper beats Rock";
+    } else if (userSelection === "Rock" && computerSelection === "Scissors") {
+      userScore++;
+      return "You win! Rock beats Scissors";
+    }
+    // Tie scenario
+    else if (userSelection === computerSelection) {
+      return "Tie!";
     }
 
-    // if the user won at least 3 out of 5 rounds they won, if not they lost
-    if (userScore >= 3) {
-        return 'Victory!'
-    }
+    // If the above conditions aren't true then the user loses
     else {
-        return 'Defeat!'
+      return "You lose!";
     }
+  }
+
+  // This loops through the playRound() function 5 times
+  for (let i = 0; i < 5; i++) {
+    playRound(userChoice, getComputerChoice());
+  }
+
+  // if the user won at least 3 out of 5 rounds they won, if not they lost
+  if (userScore >= 3) {
+    return "Victory!";
+  } else {
+    return "Defeat!";
+  }
 }
-
-*/
-
-// Might have to move userChoice into the playRound() function. It's currently at the top of document.
